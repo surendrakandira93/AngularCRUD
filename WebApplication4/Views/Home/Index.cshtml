@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div ng-controller="mvcCRUDCtrl">
+    <div class="divList">
+        <p><b><i>Product List</i></b></p>
+        <table class="table table-hover">
+            <tr>
+                <td><b>ID</b></td>
+                <td><b>Name</b></td>
+                <td><b>Price</b></td>
+                <td><b>Image</b></td>
+                <td><b>IsActive</b></td>
+                <td><b>Action</b></td>
+            </tr>
+            <tr ng-repeat="product in Products">
+                <td>
+                    {{product.Id}}
+                </td>
+                <td>
+                    {{product.Name}}
+                </td>
+                <td>
+                    {{product.Price}}
+                </td>
+                <td>
+                  <img src="{{product.Image}}" height="100px;" width="100px;" />
+                </td>
+                <td>
+                    {{product.IsActive}}
+                </td>
+                <td>
+                    <span ng-click="EditProduct(product.Id)" class="btn btn-primary">Edit</span>                   
+                </td>
+            </tr>
+        </table>
+    </div>
+    <span ng-click="AddProductDiv()" class="btn btn-default">
+        Add Product
+    </span>
+    <div ng-show="divProduct">
+        <p class="divHead"></p>
+        <table class="table">
+            <tr>
+                <td><b><i>{{Action}} Product</i></b></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <form name="userForm" ng-submit="submitForm()" novalidate>
+
+                <tr>
+                    <td><b>Id</b></td>
+                    <td>
+                        <input type="text" disabled="disabled" ng-model="Id" />
+                    </td>
+                    <td><b>Title</b></td>
+                    <td>
+                        <input type="text" ng-model="Name" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Price</b></td>
+                    <td>
+                        <input type="text" ng-model="Price" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>IsActive</b></td>
+                    <td>
+                        <input type="checkbox" ng-model="IsActive" />
+                    </td>
+                    <td>
+                        <input type="file" id="inputFile" name="file" required>
+
+                    </td>
+                    <td>
+                        <input type="submit" class="btn btn-default" value="Save" ng-click="AddUpdateProduct()" />
+                        <input type="button" class="btn btn-danger" value="Cancel" ng-click="Cancel()" />
+                    </td>
+                </tr>
+                </form>
+</table>
+    </div>
+</div>

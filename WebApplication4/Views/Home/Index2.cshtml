@@ -1,0 +1,89 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-controller="mvcCRUDCtrl">
+
+    <div class="divList">
+        <p><b><i>Product List</i></b></p>
+        <table class="table table-hover">
+            <tr>
+                <td><b>ID</b></td>
+                <td><b>Name</b></td>
+                <td><b>Price</b></td>
+                <td><b>Image</b></td>
+                <td><b>IsActive</b></td>
+                <td><b>Action</b></td>
+            </tr>
+            <tr ng-repeat="product in Products">
+                <td>
+                    {{product.Id}}
+                </td>
+                <td>
+                    {{product.Name}}
+                </td>
+                <td>
+                    {{product.Price}}
+                </td>
+                <td>
+                    <img src="{{product.Image}}" height="100px;" width="100px;" />
+                </td>
+                <td>
+                    {{product.IsActive}}
+                </td>
+                <td>
+                    <span ng-click="EditProduct(product.Id)" class="btn btn-primary">Edit</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <span ng-click="AddProductDiv()" class="btn btn-default">
+        Add Product
+    </span>
+    <div ng-show="divProduct">
+        <i>{{Action}} Product</i>
+        <p class="divHead"></p>
+        <div ng-form="exampleForm">
+            <!-- FIRST NAME -->
+            <label for="firstName">Name *</label>
+            <div>
+                <input type="text" id="Name" name="Name" required=""  ng-model="Name" />
+                <div class="validation-error"
+                     ng-show="(exampleForm.Name.$dirty || invalidSubmitAttempt) && exampleForm.Name.$error.required">
+                    Name is required.
+                </div>                
+            </div>
+            <label for="firstName">Price *</label>
+            <div>
+                <input type="text" id="Price" name="Price" required="" ng-model="Price" />
+                <div class="validation-error"
+                     ng-show="(exampleForm.Price.$dirty || invalidSubmitAttempt) && exampleForm.Price.$error.required">
+                    Price is required.
+                </div>
+            </div>
+            <div>
+                
+                <input type="checkbox" id="Name" name="Name" required="" ng-model="Name" />
+                <div class="validation-error"
+                     ng-show="(exampleForm.Name.$dirty || invalidSubmitAttempt) && exampleForm.Name.$error.required">
+                    Name is required.
+                </div>
+            </div>
+            <div>
+                <input type="text" id="Name" name="Name" required="" ng-model="Name" />
+                <div class="validation-error"
+                     ng-show="(exampleForm.Name.$dirty || invalidSubmitAttempt) && exampleForm.Name.$error.required">
+                    Name is required.
+                </div>
+            </div>
+            <div>
+                <input type="text" id="Name" name="Name" required="" ng-model="Name" />
+                <div class="validation-error"
+                     ng-show="(exampleForm.Name.$dirty || invalidSubmitAttempt) && exampleForm.Name.$error.required">
+                    Name is required.
+                </div>
+            </div>
+
+            <button ng-click="AddUpdateProduct(exampleForm)">Save</button>
+        </div>
+        </div>
+    </div>
